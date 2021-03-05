@@ -1,28 +1,22 @@
 <template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
-  </div>
+  <article id="app">
+    <earthquake-map />
+  </article>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import EarthquakeMap from './components/earthquake-map.vue'
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
+    EarthquakeMap
   }
 }
 </script>
 
-<style lang="scss">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+<style lang="sass">
+@import "./styleguide/index.sass"
+@import "./styleguide/reset.sass"
+
 </style>
