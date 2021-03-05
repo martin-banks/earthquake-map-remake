@@ -97,7 +97,7 @@
     >test button</button> -->
 
     <div class="copyright">
-      <a href="https:martinbanks.com.au">© Martin Banks {{ new Date().getFullYear() }}</a>
+      <a href="https://martinbanks.com.au">© Martin Banks {{ new Date().getFullYear() }}</a>
     </div>
   </div>
 </template>
@@ -606,5 +606,8 @@ $backdrop-blur: 10px
     display: block
     text-align: center
     font-weight: 400 !important
+    color: black !important
+    @media screen and (prefers-color-scheme: dark)
+      color: white !important
 
 </style>
