@@ -5,23 +5,28 @@
     </div>
 
     <div v-if="responseData" class="timeline__wrapper">
-      <div v-if="details.properties" class="quakeDetails">
-        <div class="quakeDetails__content">
-          <h6 v-if="details.properties">{{ details.properties.type }}</h6>
-          <h3 v-if="details.properties">{{ details.properties.place }}</h3>
-          <p v-if="details.properties">{{ quakeDate(details.properties.time) }}</p>
+      <div class="quakeDetails">
+        <h1 class="pageTitle">Seven days<br />of Earthquakes</h1>
+        <div v-if="details.properties" class="quakeDetails__content">
+          <h6 >
+            {{ details.properties.type }} |
+            <span class="date" >{{ quakeDate(details.properties.time) }}</span>
+          </h6>
+          <h3 >{{ details.properties.place }}</h3>
+          <!-- <p >{{ quakeDate(details.properties.time) }}</p> -->
 
-          <div  class="magnitude__wrapper">
+          <div class="magnitude__wrapper">
             <p>Magnitude: {{ details.properties.mag }}</p>
+            <p v-if="details.properties && details.properties.tsunami">Tsunami warning issued</p>
+            <p v-else>No tsunami warning</p>
           </div>
           <div class="magnitude__track">
-            <div class="magnitude__mark"
-              :style="{ left: `${details.properties.mag / 10 * 100}%` }"
-            />
+            <div class="magnitude__mark" :style="{ left: `${details.properties.mag / 10 * 100}%` }" />
           </div>
 
-          <p v-if="details.properties && details.properties.tsunami">Tsunami warning issued</p>
-          <p v-else>No tsunami warning</p>
+        </div>
+        <div v-else>
+          <p :style="{ textAlign: 'right' }"><i>Mouse over hotspots for details</i></p>
         </div>
       </div>
 
@@ -90,6 +95,10 @@
     <!-- <button
       @mouseover="testfunc"
     >test button</button> -->
+
+    <div class="copyright">
+      <a href="https:martinbanks.com.au">© Martin Banks {{ new Date().getFullYear() }}</a>
+    </div>
   </div>
 </template>
 
@@ -400,6 +409,9 @@ export default {
 
 $backdrop-blur: 10px
 
+.pageTitle
+  margin: 0 !important
+
 .map__wrapper
   width: 100vw
   height: 100vh
@@ -422,6 +434,9 @@ $backdrop-blur: 10px
     font-weight: 800
 
 .quakeDetails
+  display: grid
+  grid-template-columns: 2fr 1fr
+  align-items: end
   top: 0
   right: 0
   width: 100%
@@ -430,6 +445,7 @@ $backdrop-blur: 10px
   border-bottom: solid 1px $color-grey-8
   &__content
     max-width: 400px
+
   @media (prefers-color-scheme: dark)
     // background: rgba(black, 0.4)
   // border-radius: 4px
@@ -441,8 +457,16 @@ $backdrop-blur: 10px
   p
     // text-transform: capitalize
     margin: 0 !important
+    font-weight: 400 !important
+  h3
+    margin: 0 !important
+    font-size: 20px !important
   h3:first-letter
     text-transform: uppercase
+
+  .date
+    font-weight: 400 !important
+    font-size: 14px !important
 
 .magnitude
   &__wrapper
@@ -571,5 +595,16 @@ $backdrop-blur: 10px
   flex: 0 0 auto
   border: solid 2px rgba($color-grey-5, 0)
   border-top: solid 6px rgba($color-grey-5, 1)
+
+.copyright
+  position: fixed !important
+  bottom: 8px
+  left: 50%
+  transform: translateX(-50%)
+  z-index: 1000
+  a
+    display: block
+    text-align: center
+    font-weight: 400 !important
 
 </style>
