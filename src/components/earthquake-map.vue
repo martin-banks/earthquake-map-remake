@@ -145,17 +145,17 @@ export default {
       content: {
         header: {
           title: 'Seven days of earthquakes',
-          intro: false,
+          intro: false
         },
         map: {
           coords: {
             lat: 15,
-            lng: 180,
+            lng: 180
           },
           zoom: 3,
           maxZoom: 10,
-          minZoom: 3,
-        },
+          minZoom: 3
+        }
       }
     }
   },
