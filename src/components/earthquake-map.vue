@@ -253,6 +253,7 @@ export default {
           quake.addTo(this.myMap)
           quake.type = 'circlemarker'
           quake.addEventListener('mouseover', this.mouseOverQuake.bind(false, { data: f }))
+          quake.addEventListener('click', this.mouseOverQuake.bind(false, { data: f }))
 
           // ? Duplicates the points to the left so that points are fully displayed around the pacific
           // ? The Pacific (or ring of fire) has the greates density of quakes so is the area of greates interest
@@ -266,6 +267,7 @@ export default {
           quakeAlt.addTo(this.myMap)
           quakeAlt.type = 'circlemarker'
           quakeAlt.addEventListener('mouseover', this.mouseOverQuake.bind(false, { data: f }))
+          quakeAlt.addEventListener('click', this.mouseOverQuake.bind(false, { data: f }))
           return { quake, quakeAlt }
         })
     },
@@ -393,8 +395,8 @@ export default {
         this.dates = { from, to }
         this.dateRange = { from, to, range }
         this.timelineRange = {
-          from: new Date(new Date(from).setHours(0, 0, 0, 0)),
-          to: new Date((to + 1)).setHours(0, 0, 0, 0)
+          from: new Date(new Date(from).setUTCHours(0, 0, 0, 0)),
+          to: new Date((to + 1)).setUTCHours(0, 0, 0, 0)
         }
         this.showControls = (!('ontouchstart' in document.documentElement))
       })
