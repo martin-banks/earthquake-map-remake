@@ -99,6 +99,7 @@
     <div class="copyright">
       <a href="https://martinbanks.com.au">© Martin Banks {{ new Date().getFullYear() }}</a>
     </div>
+
   </div>
 </template>
 
